@@ -1,5 +1,5 @@
 /**
- * PromptMate — VS Code extension entry point.
+ * PromptChef — VS Code extension entry point.
  *
  * This is the analog of the Chrome extension's `service-worker.ts`: it wires up
  * the long-lived pieces (commands, the Activity Bar view, status bar, config)
@@ -13,7 +13,7 @@
 import * as vscode from "vscode";
 import { ConfigProvider } from "./config/settings";
 import { enhanceCommand } from "./commands/enhance";
-import { PromptMateViewProvider } from "./webview/craftPanel";
+import { PromptChefViewProvider } from "./webview/craftPanel";
 import { WandStatusBar } from "./ui/statusBar";
 
 export function activate(context: vscode.ExtensionContext): void {
@@ -22,16 +22,16 @@ export function activate(context: vscode.ExtensionContext): void {
   context.subscriptions.push(statusBar);
 
   // ── Activity Bar view (Modify / Craft tabs) ────────────────────────────────
-  const viewProvider = new PromptMateViewProvider(config);
+  const viewProvider = new PromptChefViewProvider(config);
   context.subscriptions.push(
-    vscode.window.registerWebviewViewProvider(PromptMateViewProvider.viewType, viewProvider, {
+    vscode.window.registerWebviewViewProvider(PromptChefViewProvider.viewType, viewProvider, {
       webviewOptions: { retainContextWhenHidden: true },
     }),
   );
 
   // ── Commands ───────────────────────────────────────────────────────────────
   context.subscriptions.push(
-    vscode.commands.registerCommand("promptmate.enhance", async () => {
+    vscode.commands.registerCommand("promptchef.enhance", async () => {
       statusBar.busy();
       try {
         await enhanceCommand(config, false);
@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext): void {
       }
     }),
 
-    vscode.commands.registerCommand("promptmate.enhanceWithMode", async () => {
+    vscode.commands.registerCommand("promptchef.enhanceWithMode", async () => {
       statusBar.busy();
       try {
         await enhanceCommand(config, true);
@@ -49,29 +49,29 @@ export function activate(context: vscode.ExtensionContext): void {
       }
     }),
 
-    vscode.commands.registerCommand("promptmate.craft", () => viewProvider.reveal()),
+    vscode.commands.registerCommand("promptchef.craft", () => viewProvider.reveal()),
 
-    vscode.commands.registerCommand("promptmate.setApiKey", async () => {
+    vscode.commands.registerCommand("promptchef.setApiKey", async () => {
       const key = await vscode.window.showInputBox({
-        title: "PromptMate — API Key",
+        title: "PromptChef — API Key",
         prompt: "Stored securely in the OS keychain (SecretStorage), never in settings.json.",
         password: true,
         ignoreFocusOut: true,
       });
       if (key?.trim()) {
         await config.setApiKey(key.trim());
-        void vscode.window.showInformationMessage("PromptMate: API key saved.");
+        void vscode.window.showInformationMessage("PromptChef: API key saved.");
       }
     }),
 
-    vscode.commands.registerCommand("promptmate.clearApiKey", async () => {
+    vscode.commands.registerCommand("promptchef.clearApiKey", async () => {
       await config.clearApiKey();
-      void vscode.window.showInformationMessage("PromptMate: API key cleared.");
+      void vscode.window.showInformationMessage("PromptChef: API key cleared.");
     }),
 
     // Copy action invoked from the panel's output (the button shows its own
     // "Copied" confirmation, so no notification toast here).
-    vscode.commands.registerCommand("promptmate.copyPrompt", async (text?: string) => {
+    vscode.commands.registerCommand("promptchef.copyPrompt", async (text?: string) => {
       if (!text) return;
       await vscode.env.clipboard.writeText(text);
     }),
@@ -91,7 +91,7 @@ export function activate(context: vscode.ExtensionContext): void {
   let lastProvider = config.read().provider;
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration(async (e) => {
-      if (!e.affectsConfiguration("promptmate.provider")) return;
+      if (!e.affectsConfiguration("promptchef.provider")) return;
       const next = config.read().provider;
       if (next === lastProvider) return;
       lastProvider = next;
@@ -104,13 +104,13 @@ export function activate(context: vscode.ExtensionContext): void {
       if (needsKey) {
         const note = hadKey ? "Previous API key cleared. " : "";
         const pick = await vscode.window.showInformationMessage(
-          `PromptMate: switched to ${label}. ${note}Set your ${label} API key.`,
+          `PromptChef: switched to ${label}. ${note}Set your ${label} API key.`,
           "Set API Key",
         );
-        if (pick === "Set API Key") void vscode.commands.executeCommand("promptmate.setApiKey");
+        if (pick === "Set API Key") void vscode.commands.executeCommand("promptchef.setApiKey");
       } else if (hadKey) {
         void vscode.window.showInformationMessage(
-          `PromptMate: switched to ${label}. Previous API key cleared.`,
+          `PromptChef: switched to ${label}. Previous API key cleared.`,
         );
       }
     }),

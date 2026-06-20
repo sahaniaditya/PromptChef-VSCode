@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="media/icon.png" width="96" alt="PromptMate logo" />
-  <h1>PromptMate</h1>
+  <img src="media/icon.png" width="96" alt="PromptChef logo" />
+  <h1>PromptChef AI Enhancer</h1>
   <p><strong>Thinks before you send.</strong><br/>
   Turn vague prompts into clear, well-specified ones — right inside VS Code.</p>
 
@@ -12,7 +12,7 @@
 
 ## What it does
 
-You write a rough prompt. PromptMate rewrites it — making it more concise, clearer, or more detailed — depending on what you need. It streams the result directly into your editor so you can see it improving in real time.
+You write a rough prompt. PromptChef rewrites it — making it more concise, clearer, or more detailed — depending on what you need. It streams the result directly into your editor so you can see it improving in real time.
 
 No copy-pasting. No switching tabs. Just better prompts, faster.
 
@@ -36,7 +36,7 @@ No copy-pasting. No switching tabs. Just better prompts, faster.
 
 ### Use the panel
 
-**Step 1 — Click the PromptMate icon** in the Activity Bar (left sidebar) to open the panel.
+**Step 1 — Click the PromptChef icon** in the Activity Bar (left sidebar) to open the panel.
 
 **Step 2 — Modify tab:** paste any prompt, pick a dimension (Concise / Clarity / Detail) and a domain type, then hit **Enhance**. The improved prompt appears below with a Copy button.
 
@@ -76,9 +76,9 @@ If you're using VS Code with Copilot or Claude already installed, both flows wor
 
 Click **✨ Enhance** in the bottom-right status bar. While running, it shows a spinner so you always know it's working.
 
-### 3 — The PromptMate panel
+### 3 — The PromptChef panel
 
-Click the PromptMate icon in the **Activity Bar** (left sidebar) to open the panel. It has two tabs:
+Click the PromptChef icon in the **Activity Bar** (left sidebar) to open the panel. It has two tabs:
 
 #### Modify tab
 Paste or type any prompt, choose a dimension and domain type, then hit **Enhance**. The result appears below with a **Copy** button.
@@ -104,7 +104,7 @@ Paste or type any prompt, choose a dimension and domain type, then hit **Enhance
 ```
 
 #### Craft tab
-Describe the prompt you want in plain English. Choose a type, length, and tone — PromptMate generates a ready-to-use prompt from scratch.
+Describe the prompt you want in plain English. Choose a type, length, and tone — PromptChef generates a ready-to-use prompt from scratch.
 
 ---
 
@@ -112,11 +112,11 @@ Describe the prompt you want in plain English. Choose a type, length, and tone �
 
 ### Option A — No key needed (default)
 
-If you have **GitHub Copilot** or **Claude for VS Code** installed, PromptMate uses it automatically. Set the provider to `VS Code model` in Settings and you're done.
+If you have **GitHub Copilot** or **Claude for VS Code** installed, PromptChef uses it automatically. Set the provider to `VS Code model` in Settings and you're done.
 
 ### Option B — Your own API key
 
-1. Open the PromptMate panel → **Settings** tab
+1. Open the PromptChef panel → **Settings** tab
 2. Choose your provider (Anthropic, OpenAI, or Gemini)
 3. Enter the model ID you want to use
 4. Paste your API key and click **Save key**
@@ -163,11 +163,11 @@ All commands are available in the Command Palette (`Ctrl+Shift+P`):
 
 | Command | Description |
 |---|---|
-| `PromptMate: Enhance Prompt` | Rewrite selection using the default mode |
-| `PromptMate: Enhance Prompt (choose mode…)` | Pick Concise / Clarity / Detail first |
-| `PromptMate: Open Panel` | Open the Modify / Craft sidebar panel |
-| `PromptMate: Set API Key…` | Store an API key securely |
-| `PromptMate: Clear Stored API Key` | Remove the stored key |
+| `PromptChef: Enhance Prompt` | Rewrite selection using the default mode |
+| `PromptChef: Enhance Prompt (choose mode…)` | Pick Concise / Clarity / Detail first |
+| `PromptChef: Open Panel` | Open the Modify / Craft sidebar panel |
+| `PromptChef: Set API Key…` | Store an API key securely |
+| `PromptChef: Clear Stored API Key` | Remove the stored key |
 
 ---
 

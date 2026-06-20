@@ -12,8 +12,8 @@
 import * as vscode from "vscode";
 import type { EnhanceMode, ProviderKind, PromptType, Settings } from "../shared/types";
 
-const SECTION = "promptmate";
-const SECRET_KEY = "promptmate.apiKey";
+const SECTION = "promptchef";
+const SECRET_KEY = "promptchef.apiKey";
 
 export class ConfigProvider {
   constructor(private readonly secrets: vscode.SecretStorage) {}

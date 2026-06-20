@@ -4,7 +4,7 @@
  *
  * Instead of calling an HTTP API with the user's own key, this reuses a chat
  * model already registered in the editor (Copilot, Claude in VS Code, …) via
- * the `vscode.lm` API. That means PromptMate works with zero configuration for
+ * the `vscode.lm` API. That means PromptChef works with zero configuration for
  * anyone who already has an AI agent extension installed, and the request is
  * billed/authenticated through that extension.
  *
@@ -27,7 +27,7 @@ async function selectModel(modelHint: string): Promise<vscode.LanguageModelChat>
     throw new PromptMateError(
       "NO_MODEL",
       "No language model is available. Install GitHub Copilot or Claude for VS Code, " +
-        "or switch PromptMate's provider to Anthropic/OpenAI in Settings.",
+        "or switch PromptChef's provider to Anthropic/OpenAI in Settings.",
     );
   }
   const hint = modelHint.trim().toLowerCase();

@@ -1,5 +1,5 @@
 /**
- * PromptMate view — an Activity Bar webview with two tabs:
+ * PromptChef view — an Activity Bar webview with two tabs:
  *
  *   • Modify — refine an existing prompt along one dimension (Concise / Clarity /
  *     Detail = the `concise` / `refine` / `detail` EnhanceModes). Seeded with the
@@ -53,8 +53,8 @@ interface InboundMessage {
   proxyUrl?: string;
 }
 
-export class PromptMateViewProvider implements vscode.WebviewViewProvider {
-  static readonly viewType = "promptmate.panelView";
+export class PromptChefViewProvider implements vscode.WebviewViewProvider {
+  static readonly viewType = "promptchef.panelView";
 
   private view?: vscode.WebviewView;
   private cancel?: vscode.CancellationTokenSource;
@@ -79,7 +79,7 @@ export class PromptMateViewProvider implements vscode.WebviewViewProvider {
   /** Reveal the view (Activity Bar) and seed the Modify box from the selection. */
   async reveal(): Promise<void> {
     this.seedFromEditor();
-    await vscode.commands.executeCommand("promptmate.panelView.focus");
+    await vscode.commands.executeCommand("promptchef.panelView.focus");
     this.seedFromEditor();
   }
 
@@ -93,7 +93,7 @@ export class PromptMateViewProvider implements vscode.WebviewViewProvider {
   private async onMessage(msg: InboundMessage): Promise<void> {
     switch (msg.type) {
       case "copy":
-        if (msg.text) await vscode.commands.executeCommand("promptmate.copyPrompt", msg.text);
+        if (msg.text) await vscode.commands.executeCommand("promptchef.copyPrompt", msg.text);
         return;
       case "insert":
         if (msg.text) {

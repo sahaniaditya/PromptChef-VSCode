@@ -1,6 +1,6 @@
 {
-  "name": "promptmate",
-  "displayName": "PromptMate",
+  "name": "promptchef",
+  "displayName": "PromptChef",
   "description": "Thinks before you send — turns vague prompts into clear, well-specified ones, right inside VS Code.",
   "version": "0.1.0",
   "publisher": "AdityaSahani",
@@ -8,7 +8,7 @@
   "icon": "icon.ico",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sahaniaditya/PromptMate-VSCode.git"
+    "url": "https://github.com/sahaniaditya/PromptChef-VSCode.git"
   },
   "engines": {
     "vscode": "^1.90.0"
@@ -33,17 +33,17 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "promptmate",
-          "title": "PromptMate",
+          "id": "promptchef",
+          "title": "PromptChef",
           "icon": "media/wand-monochrome.svg"
         }
       ]
     },
     "views": {
-      "promptmate": [
+      "promptchef": [
         {
           "type": "webview",
-          "id": "promptmate.panelView",
+          "id": "promptchef.panelView",
           "name": "Modify / Craft",
           "icon": "media/wand-monochrome.svg"
         }
@@ -51,42 +51,42 @@
     },
     "commands": [
       {
-        "command": "promptmate.enhance",
+        "command": "promptchef.enhance",
         "title": "Enhance Prompt",
-        "category": "PromptMate",
+        "category": "PromptChef",
         "icon": "$(sparkle)"
       },
       {
-        "command": "promptmate.enhanceWithMode",
+        "command": "promptchef.enhanceWithMode",
         "title": "Enhance Prompt (choose mode…)",
-        "category": "PromptMate",
+        "category": "PromptChef",
         "icon": "$(sparkle)"
       },
       {
-        "command": "promptmate.craft",
+        "command": "promptchef.craft",
         "title": "Open Panel (Modify / Craft)",
-        "category": "PromptMate"
+        "category": "PromptChef"
       },
       {
-        "command": "promptmate.setApiKey",
+        "command": "promptchef.setApiKey",
         "title": "Set API Key…",
-        "category": "PromptMate"
+        "category": "PromptChef"
       },
       {
-        "command": "promptmate.clearApiKey",
+        "command": "promptchef.clearApiKey",
         "title": "Clear Stored API Key",
-        "category": "PromptMate"
+        "category": "PromptChef"
       }
     ],
     "keybindings": [
       {
-        "command": "promptmate.enhance",
+        "command": "promptchef.enhance",
         "key": "ctrl+shift+e",
         "mac": "cmd+shift+e",
         "when": "editorTextFocus"
       },
       {
-        "command": "promptmate.enhanceWithMode",
+        "command": "promptchef.enhanceWithMode",
         "key": "ctrl+shift+alt+e",
         "mac": "cmd+shift+alt+e",
         "when": "editorTextFocus"
@@ -95,41 +95,25 @@
     "menus": {
       "editor/context": [
         {
-          "command": "promptmate.enhance",
+          "command": "promptchef.enhance",
           "when": "editorHasSelection",
           "group": "1_modification@10"
         }
       ],
       "commandPalette": [
-        {
-          "command": "promptmate.enhance"
-        },
-        {
-          "command": "promptmate.enhanceWithMode"
-        },
-        {
-          "command": "promptmate.craft"
-        },
-        {
-          "command": "promptmate.setApiKey"
-        },
-        {
-          "command": "promptmate.clearApiKey"
-        }
+        { "command": "promptchef.enhance" },
+        { "command": "promptchef.enhanceWithMode" },
+        { "command": "promptchef.craft" },
+        { "command": "promptchef.setApiKey" },
+        { "command": "promptchef.clearApiKey" }
       ]
     },
     "configuration": {
-      "title": "PromptMate",
+      "title": "PromptChef",
       "properties": {
-        "promptmate.provider": {
+        "promptchef.provider": {
           "type": "string",
-          "enum": [
-            "vscode-lm",
-            "anthropic",
-            "openai",
-            "gemini",
-            "proxy"
-          ],
+          "enum": ["vscode-lm", "anthropic", "openai", "gemini", "proxy"],
           "enumDescriptions": [
             "Use a model already available in VS Code (e.g. Copilot / Claude). No API key needed.",
             "Call the Anthropic API directly with your own key.",
@@ -140,41 +124,29 @@
           "default": "vscode-lm",
           "description": "Where prompt processing happens."
         },
-        "promptmate.model": {
+        "promptchef.model": {
           "type": "string",
           "default": "claude-haiku-4-5-20251001",
           "markdownDescription": "Model id for the selected provider (free-text — enter the exact id from the provider). Find valid ids: [Anthropic models](https://docs.anthropic.com/en/docs/about-claude/models/overview) · [OpenAI models](https://platform.openai.com/docs/models) · [Gemini models](https://ai.google.dev/gemini-api/docs/models). Examples: `claude-haiku-4-5-20251001`, `gpt-4o-mini`, `gemini-2.0-flash`. For `vscode-lm` this is matched against the chat models available in VS Code."
         },
-        "promptmate.proxyUrl": {
+        "promptchef.proxyUrl": {
           "type": "string",
           "default": "",
           "description": "Proxy endpoint used when provider is 'proxy'."
         },
-        "promptmate.defaultMode": {
+        "promptchef.defaultMode": {
           "type": "string",
-          "enum": [
-            "concise",
-            "refine",
-            "detail"
-          ],
+          "enum": ["concise", "refine", "detail"],
           "default": "refine",
           "description": "Default enhancement mode used by the Enhance Prompt command."
         },
-        "promptmate.defaultType": {
+        "promptchef.defaultType": {
           "type": "string",
-          "enum": [
-            "coding",
-            "marketing",
-            "research",
-            "education",
-            "professional",
-            "general",
-            "personal"
-          ],
+          "enum": ["coding", "marketing", "research", "education", "professional", "general", "personal"],
           "default": "coding",
           "description": "Domain the rewrite is tailored toward."
         },
-        "promptmate.streamIntoEditor": {
+        "promptchef.streamIntoEditor": {
           "type": "boolean",
           "default": true,
           "description": "Stream the rewritten prompt into the editor as it arrives. When off, the full result is applied at once."

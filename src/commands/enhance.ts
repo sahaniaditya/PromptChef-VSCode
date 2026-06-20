@@ -41,13 +41,13 @@ export async function enhanceCommand(
 ): Promise<void> {
   const editor = vscode.window.activeTextEditor;
   if (!editor) {
-    void vscode.window.showInformationMessage("PromptMate: open a file with a prompt first.");
+    void vscode.window.showInformationMessage("PromptChef: open a file with a prompt first.");
     return;
   }
 
   const { text, range } = resolveTarget(editor);
   if (!text.trim()) {
-    void vscode.window.showInformationMessage("PromptMate: nothing to enhance.");
+    void vscode.window.showInformationMessage("PromptChef: nothing to enhance.");
     return;
   }
 
@@ -66,7 +66,7 @@ export async function enhanceCommand(
   const user = buildUserMessage(text);
 
   await vscode.window.withProgress(
-    { location: vscode.ProgressLocation.Notification, title: "PromptMate: enhancing…", cancellable: true },
+    { location: vscode.ProgressLocation.Notification, title: "PromptChef: enhancing…", cancellable: true },
     async (_progress, token) => {
       // Open one undo stop so the entire streamed rewrite reverts with one Ctrl+Z.
       await editor.edit(() => {}, { undoStopBefore: true, undoStopAfter: false });

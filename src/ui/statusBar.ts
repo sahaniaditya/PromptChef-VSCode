@@ -11,19 +11,19 @@ export class WandStatusBar {
 
   constructor() {
     this.item = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-    this.item.command = "promptmate.enhance";
+    this.item.command = "promptchef.enhance";
     this.idle();
     this.item.show();
   }
 
   idle(): void {
     this.item.text = "$(sparkle) Enhance";
-    this.item.tooltip = "PromptMate: Enhance Prompt (Ctrl+Shift+E)";
+    this.item.tooltip = "PromptChef: Enhance Prompt (Ctrl+Shift+E)";
   }
 
   busy(): void {
     this.item.text = "$(sync~spin) Enhancing…";
-    this.item.tooltip = "PromptMate is enhancing your prompt";
+    this.item.tooltip = "PromptChef is enhancing your prompt";
   }
 
   dispose(): void {

@@ -22,11 +22,11 @@ export async function reportError(err: unknown, onRetry?: () => void): Promise<v
   if (code === "ABORT") return; // user-initiated cancellation — stay quiet
 
   const detail = err instanceof Error ? err.message : String(err);
-  const message = `PromptMate: ${FRIENDLY[code]}`;
+  const message = `PromptChef: ${FRIENDLY[code]}`;
 
   if (code === "NO_KEY") {
     const pick = await vscode.window.showErrorMessage(message, "Set API Key");
-    if (pick === "Set API Key") void vscode.commands.executeCommand("promptmate.setApiKey");
+    if (pick === "Set API Key") void vscode.commands.executeCommand("promptchef.setApiKey");
     return;
   }
   if (code === "NO_MODEL" || code === "BAD_MODEL") {
@@ -34,7 +34,7 @@ export async function reportError(err: unknown, onRetry?: () => void): Promise<v
     const text = code === "BAD_MODEL" ? `${message} (${detail})` : message;
     const pick = await vscode.window.showErrorMessage(text, "Open Settings");
     if (pick === "Open Settings") {
-      void vscode.commands.executeCommand("workbench.action.openSettings", "promptmate.model");
+      void vscode.commands.executeCommand("workbench.action.openSettings", "promptchef.model");
     }
     return;
   }
