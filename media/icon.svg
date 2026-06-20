@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" shape-rendering="geometricPrecision">
+  <defs>
+    <clipPath id="rc">
+      <rect width="128" height="128" rx="28" ry="28"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="128" height="128" rx="28" ry="28" fill="#534AB7"/>
+
+  <!-- Top highlight for depth -->
+  <rect x="0" y="0" width="128" height="54" rx="28" ry="28" fill="#6059C9" clip-path="url(#rc)"/>
+
+  <!-- Document lines -->
+  <rect x="22" y="34" width="52" height="7" rx="3.5" fill="#FFFFFF" opacity="0.30"/>
+  <rect x="22" y="48" width="76" height="7" rx="3.5" fill="#FFFFFF" opacity="0.30"/>
+  <rect x="22" y="62" width="62" height="7" rx="3.5" fill="#FFFFFF" opacity="0.30"/>
+  <rect x="22" y="76" width="38" height="7" rx="3.5" fill="#FFFFFF" opacity="0.20"/>
+
+  <!-- Badge ring -->
+  <circle cx="91" cy="91" r="24" fill="#26215C"/>
+  <circle cx="91" cy="91" r="21" fill="#7F77DD"/>
+
+  <!-- Checkmark -->
+  <polyline points="81,91 88,98 102,82" fill="none"
+    stroke="#FFFFFF" stroke-width="4"
+    stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

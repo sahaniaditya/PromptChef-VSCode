@@ -1,0 +1,11 @@
+.vscode/**
+src/**
+scripts/**
+node_modules/**
+tsconfig.json
+.gitignore
+DESIGN.md
+media/icon.svg
+**/*.map
+**/*.ts
+!dist/**

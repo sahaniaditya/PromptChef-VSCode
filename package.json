@@ -1,0 +1,202 @@
+{
+  "name": "promptmate",
+  "displayName": "PromptMate",
+  "description": "Thinks before you send — turns vague prompts into clear, well-specified ones, right inside VS Code.",
+  "version": "0.1.0",
+  "publisher": "AdityaSahani",
+  "license": "MIT",
+  "icon": "icon.ico",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sahaniaditya/PromptMate-VSCode.git"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other",
+    "AI",
+    "Chat"
+  ],
+  "keywords": [
+    "prompt",
+    "ai",
+    "copilot",
+    "llm",
+    "prompt engineering"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "promptmate",
+          "title": "PromptMate",
+          "icon": "media/wand-monochrome.svg"
+        }
+      ]
+    },
+    "views": {
+      "promptmate": [
+        {
+          "type": "webview",
+          "id": "promptmate.panelView",
+          "name": "Modify / Craft",
+          "icon": "media/wand-monochrome.svg"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "promptmate.enhance",
+        "title": "Enhance Prompt",
+        "category": "PromptMate",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "promptmate.enhanceWithMode",
+        "title": "Enhance Prompt (choose mode…)",
+        "category": "PromptMate",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "promptmate.craft",
+        "title": "Open Panel (Modify / Craft)",
+        "category": "PromptMate"
+      },
+      {
+        "command": "promptmate.setApiKey",
+        "title": "Set API Key…",
+        "category": "PromptMate"
+      },
+      {
+        "command": "promptmate.clearApiKey",
+        "title": "Clear Stored API Key",
+        "category": "PromptMate"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "promptmate.enhance",
+        "key": "ctrl+shift+e",
+        "mac": "cmd+shift+e",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "promptmate.enhanceWithMode",
+        "key": "ctrl+shift+alt+e",
+        "mac": "cmd+shift+alt+e",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "promptmate.enhance",
+          "when": "editorHasSelection",
+          "group": "1_modification@10"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "promptmate.enhance"
+        },
+        {
+          "command": "promptmate.enhanceWithMode"
+        },
+        {
+          "command": "promptmate.craft"
+        },
+        {
+          "command": "promptmate.setApiKey"
+        },
+        {
+          "command": "promptmate.clearApiKey"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "PromptMate",
+      "properties": {
+        "promptmate.provider": {
+          "type": "string",
+          "enum": [
+            "vscode-lm",
+            "anthropic",
+            "openai",
+            "gemini",
+            "proxy"
+          ],
+          "enumDescriptions": [
+            "Use a model already available in VS Code (e.g. Copilot / Claude). No API key needed.",
+            "Call the Anthropic API directly with your own key.",
+            "Call the OpenAI API directly with your own key.",
+            "Call the Google Gemini API directly with your own key.",
+            "Route requests through a self-hosted proxy URL."
+          ],
+          "default": "vscode-lm",
+          "description": "Where prompt processing happens."
+        },
+        "promptmate.model": {
+          "type": "string",
+          "default": "claude-haiku-4-5-20251001",
+          "markdownDescription": "Model id for the selected provider (free-text — enter the exact id from the provider). Find valid ids: [Anthropic models](https://docs.anthropic.com/en/docs/about-claude/models/overview) · [OpenAI models](https://platform.openai.com/docs/models) · [Gemini models](https://ai.google.dev/gemini-api/docs/models). Examples: `claude-haiku-4-5-20251001`, `gpt-4o-mini`, `gemini-2.0-flash`. For `vscode-lm` this is matched against the chat models available in VS Code."
+        },
+        "promptmate.proxyUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Proxy endpoint used when provider is 'proxy'."
+        },
+        "promptmate.defaultMode": {
+          "type": "string",
+          "enum": [
+            "concise",
+            "refine",
+            "detail"
+          ],
+          "default": "refine",
+          "description": "Default enhancement mode used by the Enhance Prompt command."
+        },
+        "promptmate.defaultType": {
+          "type": "string",
+          "enum": [
+            "coding",
+            "marketing",
+            "research",
+            "education",
+            "professional",
+            "general",
+            "personal"
+          ],
+          "default": "coding",
+          "description": "Domain the rewrite is tailored toward."
+        },
+        "promptmate.streamIntoEditor": {
+          "type": "boolean",
+          "default": true,
+          "description": "Stream the rewritten prompt into the editor as it arrives. When off, the full result is applied at once."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --target=node18",
+    "watch": "npm run build -- --sourcemap --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.90.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "@vscode/vsce": "^3.9.2"
+  }
+}

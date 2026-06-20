@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Document (prompt) -->
+  <rect x="1.5" y="1.5" width="13.5" height="17" rx="2.5"/>
+  <!-- Prompt lines -->
+  <line x1="4.8" y1="5.8"  x2="11.7" y2="5.8"/>
+  <line x1="4.8" y1="9.5"  x2="11.7" y2="9.5"/>
+  <line x1="4.8" y1="13.2" x2="9"    y2="13.2"/>
+  <!-- Check badge (bottom-right) -->
+  <circle cx="17.5" cy="17.5" r="5.5"/>
+  <polyline points="14.9,17.7 16.8,19.6 20.2,15.5"/>
+</svg>
